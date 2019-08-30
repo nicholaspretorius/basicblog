@@ -1,10 +1,12 @@
-import axios from "axios";
+import jsonPlaceholder from "./../api/jsonPlaceholder";
 
-export const getSongs = async () => {
-  const posts = await axios.get("https://jsonplaceholder.typicode.com/posts");
-  return {
-    type: "GET_POSTS",
-    payload: posts
+export const getPosts = () => {
+  return async (dispatch, getState) => {
+    const res = await jsonPlaceholder.get("/posts");
+    dispatch({
+      type: "GET_POSTS",
+      payload: res
+    });
   };
 };
 

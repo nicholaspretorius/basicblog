@@ -1,14 +1,14 @@
 import React from "react";
 import { connect } from "react-redux";
-import { getSongs } from "./../actions";
+import { getPosts } from "./../actions";
 
 class PostList extends React.Component {
   componentDidMount() {
-    getSongs();
+    this.props.getPosts();
   }
 
   renderPost = () => {
-    const { posts } = this.props;
+    const posts = this.props.getPosts();
 
     if (!posts) {
       return <>Loading...</>;
@@ -31,7 +31,10 @@ class PostList extends React.Component {
 
 const mapStateToProps = state => {
   console.log(state);
-  return { posts: state.posts };
+  return { posts: state.getPosts };
 };
 
-export default connect(mapStateToProps)(PostList);
+export default connect(
+  mapStateToProps,
+  { getPosts }
+)(PostList);
