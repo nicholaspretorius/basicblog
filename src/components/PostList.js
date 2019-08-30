@@ -1,7 +1,12 @@
 import React from "react";
 import { connect } from "react-redux";
+import { getSongs } from "./../actions";
 
 class PostList extends React.Component {
+  componentDidMount() {
+    getSongs();
+  }
+
   renderPost = () => {
     const { posts } = this.props;
 
