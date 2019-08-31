@@ -1,12 +1,13 @@
 import React from "react";
 import { connect } from "react-redux";
 
-import { getPosts } from "./../actions";
+import { getPosts, getPostsAndUsers } from "./../actions";
 import PostAuthor from "./PostAuthor";
 
 class PostList extends React.Component {
   componentDidMount() {
-    this.props.getPosts();
+    // this.props.getPosts();
+    this.props.getPostsAndUsers();
   }
 
   renderPost = () => {
@@ -44,5 +45,5 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  { getPosts }
+  { getPosts, getPostsAndUsers }
 )(PostList);

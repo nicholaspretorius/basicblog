@@ -1,12 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
-import { getUser } from "./../actions";
 
 class PostAuthor extends React.Component {
-  componentDidMount() {
-    this.props.getUser(this.props.userId);
-  }
-
   render() {
     const { user } = this.props;
     if (!user) {
@@ -24,7 +19,4 @@ const mapStateToProps = (state, ownProps) => {
   };
 };
 
-export default connect(
-  mapStateToProps,
-  { getUser }
-)(PostAuthor);
+export default connect(mapStateToProps)(PostAuthor);
