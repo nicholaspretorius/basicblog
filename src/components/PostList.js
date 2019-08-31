@@ -1,6 +1,8 @@
 import React from "react";
 import { connect } from "react-redux";
+
 import { getPosts } from "./../actions";
+import PostAuthor from "./PostAuthor";
 
 class PostList extends React.Component {
   componentDidMount() {
@@ -16,8 +18,14 @@ class PostList extends React.Component {
 
     return posts.map(post => {
       return (
-        <div key={post.id} className="ui segment divided list">
-          <h4>{post.title}</h4>
+        <div key={post.id} className="item">
+          <i className="large middle aligned icon user"></i>
+          <div className="content">
+            <div className="description">
+              <h4>{post.title}</h4>
+              <PostAuthor userId={post.userId} />
+            </div>
+          </div>
         </div>
       );
     });
@@ -25,12 +33,12 @@ class PostList extends React.Component {
 
   render() {
     const postList = this.renderPost();
-    return <div>{postList}</div>;
+    return <div className="ui relaxed divided list">{postList}</div>;
   }
 }
 
 const mapStateToProps = state => {
-  console.log(state);
+  // console.log(state);
   return { posts: state.posts };
 };
 

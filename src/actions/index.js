@@ -5,14 +5,15 @@ export const getPosts = () => {
     const res = await jsonPlaceholder.get("/posts");
     dispatch({
       type: "GET_POSTS",
-      payload: res
+      payload: res.data
     });
   };
 };
 
-export const selectPost = post => {
-  return {
-    type: "SELECT_POST",
-    payload: post
-  };
+export const getUser = id => async dispatch => {
+  const res = await jsonPlaceholder.get(`/users/${id}`);
+  dispatch({
+    type: "GET_USER",
+    payload: res.data
+  });
 };
