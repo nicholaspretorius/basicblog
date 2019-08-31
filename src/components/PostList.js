@@ -3,24 +3,20 @@ import { connect } from "react-redux";
 import { getPosts } from "./../actions";
 
 class PostList extends React.Component {
-  constructor() {
-    super();
-    this.posts = null;
-  }
   componentDidMount() {
-    this.posts = this.props.getPosts();
+    this.props.getPosts();
   }
 
   renderPost = () => {
-    // const posts = this.props.getPosts();
+    const { posts } = this.props;
 
-    if (!this.posts) {
+    if (!posts) {
       return <>Loading...</>;
     }
 
-    return this.posts.map(post => {
+    return posts.map(post => {
       return (
-        <div key={post.id}>
+        <div key={post.id} className="ui segment divided list">
           <h4>{post.title}</h4>
         </div>
       );
@@ -35,7 +31,7 @@ class PostList extends React.Component {
 
 const mapStateToProps = state => {
   console.log(state);
-  return { posts: state.getPosts };
+  return { posts: state.posts };
 };
 
 export default connect(
